@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "repository": "Yofuria/Yofuria",
+  "metric": "daily-unique-visitors",
+  "definition": "The sum of GitHub's daily unique repository visitors. A visitor counts at most once per UTC day and may count again on a later day.",
+  "timezone": "UTC",
+  "updatedAt": "2026-08-29T13:00:37.128Z",
+  "coverage": {
+    "from": "2026-08-14",
+    "to": "2026-08-27",
+    "days": 14
+  },
+  "currentWindow": {
+    "views": 4,
+    "uniques": 1
+  },
+  "totals": {
+    "views": 4,
+    "visitorDays": 1
+  },
+  "daily": {
+    "2026-08-14": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-15": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-16": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-17": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-18": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-19": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-20": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-21": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-22": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-23": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-24": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-25": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-26": {
+      "views": 0,
+      "uniques": 0
+    },
+    "2026-08-27": {
+      "views": 4,
+      "uniques": 1
+    }
+  }
+}
