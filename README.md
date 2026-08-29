@@ -11,6 +11,8 @@ Reward Modeling · LLM Alignment · Continual Learning · Agent Memory
 [Hugging Face](https://huggingface.co/Yofuria) ·
 [Email](mailto:xiaobow.0519@gmail.com)
 
+[![Unique visitor-days](https://raw.githubusercontent.com/Yofuria/Yofuria/traffic-data/visitor-days/badge.svg)](https://github.com/Yofuria/github-visitor-days)
+
 </div>
 
 ## About
@@ -50,4 +52,3 @@ Intelligence (BIGAI). I am open to research collaboration.
   — Confidence-aware context for long-horizon agents.
 - [**Simple Long-Horizon Agent**](https://github.com/simple-agent-lab/simple-long-horizon-agent)
   — A lightweight agent for learning, experimentation, and long-horizon work.
-
