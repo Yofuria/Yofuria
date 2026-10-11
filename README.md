@@ -11,8 +11,6 @@ Reward Modeling · LLM Alignment · Continual Learning · Agent Memory
 [Hugging Face](https://huggingface.co/Yofuria) ·
 [Email](mailto:xiaobow.0519@gmail.com)
 
-[![Unique visitor-days](https://raw.githubusercontent.com/Yofuria/Yofuria/traffic-data/visitor-days/badge.svg)](https://github.com/Yofuria/github-visitor-days)
-
 </div>
 
 ## About
