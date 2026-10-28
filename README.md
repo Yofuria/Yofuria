@@ -13,10 +13,10 @@ Reward Modeling · LLM Alignment · Continual Learning · Agent Memory
 [Email](mailto:xiaobow.0519@gmail.com)
 
 <!-- citations-badge:start -->
-<a href="https://scholar.google.com/citations?user=GNO0HzAAAAAJ"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/citations-dark.svg"><img src="metrics/citations.svg" alt="Citations" height="26"></picture></a>
+<a href="https://scholar.google.com/citations?user=GNO0HzAAAAAJ"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/citations-dark.svg"><img src="metrics/citations.svg" alt="Scholar citations" height="26"></picture></a>
 <!-- citations-badge:end -->
 &nbsp;
-<a href="https://github.com/Yofuria/Yofuria/blob/main/metrics/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/project-stars-dark.svg"><img src="metrics/project-stars.svg" alt="Total stars across listed open-source projects" height="26"></picture></a>
+<a href="https://github.com/Yofuria"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/project-stars-dark.svg"><img src="metrics/project-stars.svg" alt="Total stars across listed open-source projects" height="26"></picture></a>
 
 </div>
 

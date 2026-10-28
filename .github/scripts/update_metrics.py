@@ -124,7 +124,7 @@ def collect(config, previous, now):
             "value": sum(r["stars"] for r in entries),
             "updatedAt": min(r["updatedAt"] for r in entries),
             "repositories": entries,
-            "url": "https://github.com/Yofuria/Yofuria/blob/main/metrics/README.md",
+            "url": "https://github.com/Yofuria",
         },
         "generatedAt": now,
     }
@@ -132,7 +132,7 @@ def collect(config, previous, now):
 
 def badge(label, value, updated, dark=False):
     number = f"{count(value):,}"
-    value_x = 77 if label == "Citations" else 94
+    value_x = 114 if label == "Scholar citations" else 94
     width = value_x + len(number) * 7 + 11
     paper, rule, muted, ink = (
         ("#0d1117", "#30363d", "#9198a1", "#f0f6fc") if dark
@@ -156,7 +156,7 @@ def update_readme_citation_link(text, url):
     start = text.index(start_marker)
     end = text.index(end_marker, start) + len(end_marker)
     block = f'''{start_marker}
-<a href="{escape(url, quote=True)}"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/citations-dark.svg"><img src="metrics/citations.svg" alt="Citations" height="26"></picture></a>
+<a href="{escape(url, quote=True)}"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/citations-dark.svg"><img src="metrics/citations.svg" alt="Scholar citations" height="26"></picture></a>
 {end_marker}'''
     return text[:start] + block + text[end:]
 
@@ -168,7 +168,7 @@ def write_outputs(stats):
     # Collect and validate every source before replacing any generated files.
     (OUTPUT / "stats.json").write_text(json.dumps(stats, ensure_ascii=False, indent=2) + "\n")
     for filename, label, metric in [
-        ("citations", "Citations", stats["citations"]),
+        ("citations", "Scholar citations", stats["citations"]),
         ("project-stars", "Project stars", stats["github"]),
     ]:
         for dark in (False, True):
@@ -183,7 +183,7 @@ def write_outputs(stats):
 
 These small badges share the same data on [my website](https://yofuria.github.io/) and [GitHub profile](https://github.com/Yofuria).
 
-**Citations: {stats['citations']['value']:,}** · Last successfully collected: {stats['citations']['updatedAt']}.
+**Scholar citations: {stats['citations']['value']:,}** · Last successfully collected: {stats['citations']['updatedAt']}.
 
 **Project stars: {stats['github']['value']:,}** across {len(stats['github']['repositories'])} listed open-source projects, including organization repositories. Each repository is counted once, using its stable GitHub ID. This is a project total, not stars owned by the personal account or a count of unique people.
 

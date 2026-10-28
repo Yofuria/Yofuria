@@ -2,7 +2,7 @@
 
 These small badges share the same data on [my website](https://yofuria.github.io/) and [GitHub profile](https://github.com/Yofuria).
 
-**Citations: 101** · Last successfully collected: 2026-10-27T15:51:51Z.
+**Scholar citations: 101** · Last successfully collected: 2026-10-27T15:51:51Z.
 
 **Project stars: 623** across 8 listed open-source projects, including organization repositories. Each repository is counted once, using its stable GitHub ID. This is a project total, not stars owned by the personal account or a count of unique people.
 

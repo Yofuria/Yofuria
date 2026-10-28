@@ -79,7 +79,7 @@ class CitationComparisonTests(unittest.TestCase):
         end = updated.index("<!-- citations-badge:end -->")
         block = updated[start:end]
         self.assertIn(f'href="{CONFIG["semanticScholarUrl"]}"', block)
-        self.assertIn('alt="Citations"', block)
+        self.assertIn('alt="Scholar citations"', block)
         self.assertNotIn('alt="Google Scholar', block)
         self.assertEqual(original.split("<!-- citations-badge:end -->")[1], updated.split("<!-- citations-badge:end -->")[1])
 
