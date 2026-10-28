@@ -1,0 +1,14 @@
+{
+  "scholarId": "GNO0HzAAAAAJ",
+  "scholarDataUrl": "https://raw.githubusercontent.com/Yofuria/Yofuria.github.io/google-scholar-stats/gs_data.json",
+  "repositories": [
+    "simple-agent-lab/RSIHub",
+    "bigai-nlco/belief-context-graph",
+    "bigai-nlco/PoliCon",
+    "bigai-ai/ICE",
+    "bigai-nlco/RAM",
+    "bigai-nlco/ReflectEvo",
+    "bigai-nlco/Awesome-AI-Memory",
+    "simple-agent-lab/simple-long-horizon-agent"
+  ]
+}
