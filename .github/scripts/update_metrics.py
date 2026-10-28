@@ -1,6 +1,7 @@
 """Generate shared homepage metrics and small SVG badges, using only the stdlib.
 
-Scholar comes from the website's existing crawler cache, never a second crawl.
+Compare Google Scholar's existing cache with the Semantic Scholar author API.
+Display the larger citation count and link the badge to its author profile.
 Stars count the listed projects, including organization repositories, once each.
 On a failed request, retain that source's last successful value and timestamp.
 """
@@ -42,22 +43,55 @@ def utc_date(value):
     return date.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
-def collect(config, previous, now):
+def collect_citations(config, previous, now):
+    old_citations = previous.get("citations", {})
+    cached = dict(old_citations.get("sources", {}))
+    # Migrate the original Google-only JSON without losing its last good value.
+    if not cached and old_citations.get("url", "").startswith("https://scholar.google.com/"):
+        cached["googleScholar"] = {k: old_citations[k] for k in ("value", "updatedAt", "url")}
+    sources = {}
     try:
         scholar = fetch_json(config["scholarDataUrl"])
         if scholar.get("scholar_id") != config["scholarId"]:
             raise ValueError("Scholar profile does not match the configured ID")
-        citations = {
+        sources["googleScholar"] = {
             "value": count(scholar["citedby"]),
             "updatedAt": utc_date(scholar["updated"]),
             "url": f"https://scholar.google.com/citations?user={config['scholarId']}",
         }
     except (HTTPError, URLError, TimeoutError, ValueError, KeyError) as error:
-        if not previous.get("citations"):
-            raise RuntimeError("Scholar unavailable and no previous valid data exists") from error
-        citations = previous["citations"]
-        count(citations["value"])
-        print("Scholar unavailable; keeping its last successful count and date.", file=sys.stderr)
+        if "googleScholar" in cached:
+            sources["googleScholar"] = cached["googleScholar"]
+        print("Google Scholar unavailable; retaining its last valid snapshot if available.", file=sys.stderr)
+
+    try:
+        author_id = config["semanticScholarId"]
+        author = fetch_json(f"https://api.semanticscholar.org/graph/v1/author/{author_id}?fields=authorId,name,citationCount")
+        if author.get("authorId") != author_id:
+            raise ValueError("Semantic Scholar author does not match the configured ID")
+        sources["semanticScholar"] = {
+            "value": count(author["citationCount"]),
+            "updatedAt": now,
+            "url": config["semanticScholarUrl"],
+        }
+    except (HTTPError, URLError, TimeoutError, ValueError, KeyError) as error:
+        if "semanticScholar" in cached:
+            sources["semanticScholar"] = cached["semanticScholar"]
+        print("Semantic Scholar unavailable; retaining its last valid snapshot if available.", file=sys.stderr)
+
+    if not sources:
+        raise RuntimeError("No valid citation counts available; leaving all published output untouched")
+    for source in sources.values():
+        count(source["value"])
+        utc_date(source["updatedAt"])
+    # Ties prefer Google Scholar. Compare the current snapshots, not past maxima:
+    # fresh counts can decrease after profile corrections.
+    winner = max(sources, key=lambda key: (sources[key]["value"], key == "googleScholar"))
+    return {**sources[winner], "sources": sources}
+
+
+def collect(config, previous, now):
+    citations = collect_citations(config, previous, now)
 
     old_repos = {r["source"].lower(): r for r in previous.get("github", {}).get("repositories", [])}
     repositories = {}
@@ -98,7 +132,7 @@ def collect(config, previous, now):
 
 def badge(label, value, updated, dark=False):
     number = f"{count(value):,}"
-    value_x = 114 if label == "Scholar citations" else 94
+    value_x = 77 if label == "Citations" else 94
     width = value_x + len(number) * 7 + 11
     paper, rule, muted, ink = (
         ("#0d1117", "#30363d", "#9198a1", "#f0f6fc") if dark
@@ -116,12 +150,25 @@ def badge(label, value, updated, dark=False):
 '''
 
 
+def update_readme_citation_link(text, url):
+    start_marker = "<!-- citations-badge:start -->"
+    end_marker = "<!-- citations-badge:end -->"
+    start = text.index(start_marker)
+    end = text.index(end_marker, start) + len(end_marker)
+    block = f'''{start_marker}
+<a href="{escape(url, quote=True)}"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/citations-dark.svg"><img src="metrics/citations.svg" alt="Citations" height="26"></picture></a>
+{end_marker}'''
+    return text[:start] + block + text[end:]
+
+
 def write_outputs(stats):
+    profile_readme = ROOT / "README.md"
+    updated_readme = update_readme_citation_link(profile_readme.read_text(), stats["citations"]["url"])
     OUTPUT.mkdir(exist_ok=True)
     # Collect and validate every source before replacing any generated files.
     (OUTPUT / "stats.json").write_text(json.dumps(stats, ensure_ascii=False, indent=2) + "\n")
     for filename, label, metric in [
-        ("citations", "Scholar citations", stats["citations"]),
+        ("citations", "Citations", stats["citations"]),
         ("project-stars", "Project stars", stats["github"]),
     ]:
         for dark in (False, True):
@@ -136,8 +183,7 @@ def write_outputs(stats):
 
 These small badges share the same data on [my website](https://yofuria.github.io/) and [GitHub profile](https://github.com/Yofuria).
 
-**Scholar citations: {stats['citations']['value']:,}** · Last successfully collected: {stats['citations']['updatedAt']}.
-Source: the website's existing [Scholar cache](https://github.com/Yofuria/Yofuria.github.io/blob/google-scholar-stats/gs_data.json), for [this profile]({stats['citations']['url']}).
+**Citations: {stats['citations']['value']:,}** · Last successfully collected: {stats['citations']['updatedAt']}.
 
 **Project stars: {stats['github']['value']:,}** across {len(stats['github']['repositories'])} listed open-source projects, including organization repositories. Each repository is counted once, using its stable GitHub ID. This is a project total, not stars owned by the personal account or a count of unique people.
 
@@ -145,12 +191,13 @@ Source: the website's existing [Scholar cache](https://github.com/Yofuria/Yofuri
 | --- | ---: | --- |
 {rows}
 
-The workflow attempts an update daily at 10:47 UTC (18:47 China time), and supports manual runs. A failed source keeps its previous value and timestamp; a first-time failure leaves all published output untouched.
+The workflow attempts an update daily at 10:47 UTC (18:47 China time), and supports manual runs. It compares Google Scholar and Semantic Scholar on every update and displays the larger count. The citations badge links to the corresponding author profile; ties prefer Google Scholar. A failed source keeps its previous value and timestamp. If it has no snapshot, the available source is used; if neither has valid data, all published output is left untouched.
 
 To change the scope, edit [`config.json`](config.json). The list covers repositories linked from the website's publications/projects and GitHub profile. `LLM-Memory-Survey` is now `Awesome-AI-Memory`; the stable repository ID prevents duplicate counts after renames.
 
-The website fetches [`stats.json`](stats.json); GitHub displays the generated light/dark SVGs. No extra service or API key is needed. Source: [GitHub repository API](https://docs.github.com/en/rest/repos/repos#get-a-repository). The existing Scholar crawler is maintained in the website repository.
+The website fetches [`stats.json`](stats.json); GitHub displays the generated light/dark SVGs. The workflow also updates the citations link in the profile README when the selected author profile changes. No extra service or API key is needed. The existing Google Scholar crawler is maintained in the website repository; Semantic Scholar uses its official author API.
 ''')
+    profile_readme.write_text(updated_readme)
 
 
 def main():

@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Check citation comparison and links
+        run: python -m unittest discover -s .github/scripts -p 'test_*.py'
       - name: Collect and render metrics
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -35,7 +37,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add metrics/stats.json metrics/README.md metrics/*.svg
+          git add README.md metrics/stats.json metrics/README.md metrics/*.svg
           if git diff --cached --quiet; then
             exit 0
           fi

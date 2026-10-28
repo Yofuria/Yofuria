@@ -8,10 +8,13 @@ Reward Modeling · LLM Alignment · Continual Learning · Agent Memory
 
 [Homepage](https://yofuria.github.io/) ·
 [Google Scholar](https://scholar.google.com/citations?user=GNO0HzAAAAAJ) ·
+[Semantic Scholar](https://www.semanticscholar.org/author/Xiaobo-Wang/2297250786) ·
 [Hugging Face](https://huggingface.co/Yofuria) ·
 [Email](mailto:xiaobow.0519@gmail.com)
 
-<a href="https://scholar.google.com/citations?user=GNO0HzAAAAAJ"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/citations-dark.svg"><img src="metrics/citations.svg" alt="Google Scholar citations" height="26"></picture></a>
+<!-- citations-badge:start -->
+<a href="https://scholar.google.com/citations?user=GNO0HzAAAAAJ"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/citations-dark.svg"><img src="metrics/citations.svg" alt="Citations" height="26"></picture></a>
+<!-- citations-badge:end -->
 &nbsp;
 <a href="https://github.com/Yofuria/Yofuria/blob/main/metrics/README.md"><picture><source media="(prefers-color-scheme: dark)" srcset="metrics/project-stars-dark.svg"><img src="metrics/project-stars.svg" alt="Total stars across listed open-source projects" height="26"></picture></a>
 

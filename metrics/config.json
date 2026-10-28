@@ -1,6 +1,8 @@
 {
   "scholarId": "GNO0HzAAAAAJ",
   "scholarDataUrl": "https://raw.githubusercontent.com/Yofuria/Yofuria.github.io/google-scholar-stats/gs_data.json",
+  "semanticScholarId": "2297250786",
+  "semanticScholarUrl": "https://www.semanticscholar.org/author/Xiaobo-Wang/2297250786",
   "repositories": [
     "simple-agent-lab/RSIHub",
     "bigai-nlco/belief-context-graph",
