@@ -3,6 +3,7 @@
 import importlib.util
 import json
 import unittest
+from html.parser import HTMLParser
 from pathlib import Path
 from unittest.mock import patch
 from urllib.error import URLError
@@ -82,6 +83,34 @@ class CitationComparisonTests(unittest.TestCase):
         self.assertIn('alt="Scholar citations"', block)
         self.assertNotIn('alt="Google Scholar', block)
         self.assertEqual(original.split("<!-- citations-badge:end -->")[1], updated.split("<!-- citations-badge:end -->")[1])
+
+    def test_both_badges_stay_in_the_same_paragraph_after_updates(self):
+        class Paragraphs(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.paragraph = None
+                self.next_id = 0
+                self.badges = {}
+
+            def handle_starttag(self, tag, attrs):
+                attrs = dict(attrs)
+                if tag == "p":
+                    self.next_id += 1
+                    self.paragraph = self.next_id
+                if tag == "img" and attrs.get("src", "").startswith("metrics/"):
+                    self.badges[attrs["src"]] = self.paragraph
+
+            def handle_endtag(self, tag):
+                if tag == "p":
+                    self.paragraph = None
+
+        text = (Path(__file__).resolve().parents[2] / "README.md").read_text()
+        for url in [CONFIG["semanticScholarUrl"], "https://scholar.google.com/citations?user=GNO0HzAAAAAJ"]:
+            text = metrics.update_readme_citation_link(text, url)
+            parsed = Paragraphs()
+            parsed.feed(text)
+            self.assertIsNotNone(parsed.badges["metrics/citations.svg"])
+            self.assertEqual(parsed.badges["metrics/citations.svg"], parsed.badges["metrics/project-stars.svg"])
 
 
 if __name__ == "__main__":

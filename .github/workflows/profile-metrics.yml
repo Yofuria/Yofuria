@@ -9,6 +9,7 @@ on:
     paths:
       - 'metrics/config.json'
       - '.github/scripts/update_metrics.py'
+      - '.github/scripts/test_profile_metrics.py'
       - '.github/workflows/profile-metrics.yml'
 
 permissions:
