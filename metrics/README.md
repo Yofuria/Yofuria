@@ -9,14 +9,14 @@ Source: the website's existing [Scholar cache](https://github.com/Yofuria/Yofuri
 
 | Repository | Stars | Last successfully checked (UTC) |
 | --- | ---: | --- |
-| [simple-agent-lab/RSIHub](https://github.com/simple-agent-lab/RSIHub) | 250 | 2026-10-28T08:46:21Z |
-| [bigai-nlco/belief-context-graph](https://github.com/bigai-nlco/belief-context-graph) | 212 | 2026-10-28T08:46:21Z |
-| [bigai-ai/ICE](https://github.com/bigai-ai/ICE) | 56 | 2026-10-28T08:46:21Z |
-| [bigai-nlco/Awesome-AI-Memory](https://github.com/bigai-nlco/Awesome-AI-Memory) | 42 | 2026-10-28T08:46:21Z |
-| [simple-agent-lab/simple-long-horizon-agent](https://github.com/simple-agent-lab/simple-long-horizon-agent) | 34 | 2026-10-28T08:46:21Z |
-| [bigai-nlco/ReflectEvo](https://github.com/bigai-nlco/ReflectEvo) | 22 | 2026-10-28T08:46:21Z |
-| [bigai-nlco/PoliCon](https://github.com/bigai-nlco/PoliCon) | 4 | 2026-10-28T08:46:21Z |
-| [bigai-nlco/RAM](https://github.com/bigai-nlco/RAM) | 2 | 2026-10-28T08:46:21Z |
+| [simple-agent-lab/RSIHub](https://github.com/simple-agent-lab/RSIHub) | 250 | 2026-10-28T08:50:48Z |
+| [bigai-nlco/belief-context-graph](https://github.com/bigai-nlco/belief-context-graph) | 212 | 2026-10-28T08:50:48Z |
+| [bigai-ai/ICE](https://github.com/bigai-ai/ICE) | 56 | 2026-10-28T08:50:48Z |
+| [bigai-nlco/Awesome-AI-Memory](https://github.com/bigai-nlco/Awesome-AI-Memory) | 42 | 2026-10-28T08:50:48Z |
+| [simple-agent-lab/simple-long-horizon-agent](https://github.com/simple-agent-lab/simple-long-horizon-agent) | 34 | 2026-10-28T08:50:48Z |
+| [bigai-nlco/ReflectEvo](https://github.com/bigai-nlco/ReflectEvo) | 22 | 2026-10-28T08:50:48Z |
+| [bigai-nlco/PoliCon](https://github.com/bigai-nlco/PoliCon) | 4 | 2026-10-28T08:50:48Z |
+| [bigai-nlco/RAM](https://github.com/bigai-nlco/RAM) | 2 | 2026-10-28T08:50:48Z |
 
 The workflow attempts an update daily at 10:47 UTC (18:47 China time), and supports manual runs. A failed source keeps its previous value and timestamp; a first-time failure leaves all published output untouched.
 
