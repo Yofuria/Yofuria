@@ -17,7 +17,7 @@ These small badges share the same data on [my website](https://yofuria.github.io
 | [bigai-nlco/PoliCon](https://github.com/bigai-nlco/PoliCon) | 4 | 2026-10-28T16:51:05Z |
 | [bigai-nlco/RAM](https://github.com/bigai-nlco/RAM) | 2 | 2026-10-28T16:51:05Z |
 
-The workflow attempts an update daily at 10:47 UTC (18:47 China time), and supports manual runs. It compares Google Scholar and Semantic Scholar on every update and displays the larger count. The citations badge links to the corresponding author profile; ties prefer Google Scholar. A failed source keeps its previous value and timestamp. If it has no snapshot, the available source is used; if neither has valid data, all published output is left untouched.
+The workflow attempts updates twice daily at 00:00 and 12:00 China time (16:00 and 04:00 UTC), and supports manual runs. It compares Google Scholar and Semantic Scholar on every update and displays the larger count. The citations badge links to the corresponding author profile; ties prefer Google Scholar. A failed source keeps its previous value and timestamp. If it has no snapshot, the available source is used; if neither has valid data, all published output is left untouched.
 
 To change the scope, edit [`config.json`](config.json). The list covers repositories linked from the website's publications/projects and GitHub profile. `LLM-Memory-Survey` is now `Awesome-AI-Memory`; the stable repository ID prevents duplicate counts after renames.
 
