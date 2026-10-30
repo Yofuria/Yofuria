@@ -2,20 +2,20 @@
 
 These small badges share the same data on [my website](https://yofuria.github.io/) and [GitHub profile](https://github.com/Yofuria).
 
-**Scholar citations: 101** · Last successfully collected: 2026-10-30T09:31:53Z.
+**Scholar citations: 104** · Last successfully collected: 2026-10-30T19:49:59Z.
 
-**Project stars: 676** across 8 listed open-source projects, including organization repositories. Each repository is counted once, using its stable GitHub ID. This is a project total, not stars owned by the personal account or a count of unique people.
+**Project stars: 677** across 8 listed open-source projects, including organization repositories. Each repository is counted once, using its stable GitHub ID. This is a project total, not stars owned by the personal account or a count of unique people.
 
 | Repository | Stars | Last successfully checked (UTC) |
 | --- | ---: | --- |
-| [simple-agent-lab/RSIHub](https://github.com/simple-agent-lab/RSIHub) | 304 | 2026-10-30T10:31:50Z |
-| [bigai-nlco/belief-context-graph](https://github.com/bigai-nlco/belief-context-graph) | 212 | 2026-10-30T10:31:50Z |
-| [bigai-ai/ICE](https://github.com/bigai-ai/ICE) | 56 | 2026-10-30T10:31:50Z |
-| [bigai-nlco/Awesome-AI-Memory](https://github.com/bigai-nlco/Awesome-AI-Memory) | 42 | 2026-10-30T10:31:50Z |
-| [simple-agent-lab/simple-long-horizon-agent](https://github.com/simple-agent-lab/simple-long-horizon-agent) | 34 | 2026-10-30T10:31:50Z |
-| [bigai-nlco/ReflectEvo](https://github.com/bigai-nlco/ReflectEvo) | 22 | 2026-10-30T10:31:50Z |
-| [bigai-nlco/PoliCon](https://github.com/bigai-nlco/PoliCon) | 4 | 2026-10-30T10:31:50Z |
-| [bigai-nlco/RAM](https://github.com/bigai-nlco/RAM) | 2 | 2026-10-30T10:31:50Z |
+| [simple-agent-lab/RSIHub](https://github.com/simple-agent-lab/RSIHub) | 305 | 2026-10-30T20:14:47Z |
+| [bigai-nlco/belief-context-graph](https://github.com/bigai-nlco/belief-context-graph) | 212 | 2026-10-30T20:14:47Z |
+| [bigai-ai/ICE](https://github.com/bigai-ai/ICE) | 56 | 2026-10-30T20:14:47Z |
+| [bigai-nlco/Awesome-AI-Memory](https://github.com/bigai-nlco/Awesome-AI-Memory) | 42 | 2026-10-30T20:14:47Z |
+| [simple-agent-lab/simple-long-horizon-agent](https://github.com/simple-agent-lab/simple-long-horizon-agent) | 34 | 2026-10-30T20:14:47Z |
+| [bigai-nlco/ReflectEvo](https://github.com/bigai-nlco/ReflectEvo) | 22 | 2026-10-30T20:14:47Z |
+| [bigai-nlco/PoliCon](https://github.com/bigai-nlco/PoliCon) | 4 | 2026-10-30T20:14:47Z |
+| [bigai-nlco/RAM](https://github.com/bigai-nlco/RAM) | 2 | 2026-10-30T20:14:47Z |
 
 The workflow attempts updates twice daily at 00:00 and 12:00 China time (16:00 and 04:00 UTC), and supports manual runs. It compares Google Scholar and Semantic Scholar on every update and displays the larger count. The citations badge links to the corresponding author profile; ties prefer Google Scholar. A failed source keeps its previous value and timestamp. If it has no snapshot, the available source is used; if neither has valid data, all published output is left untouched.
 

@@ -1,33 +1,33 @@
 {
   "schemaVersion": 1,
   "citations": {
-    "value": 101,
-    "updatedAt": "2026-10-30T09:31:53Z",
+    "value": 104,
+    "updatedAt": "2026-10-30T19:49:59Z",
     "url": "https://scholar.google.com/citations?user=GNO0HzAAAAAJ",
     "sources": {
       "googleScholar": {
-        "value": 101,
-        "updatedAt": "2026-10-30T09:31:53Z",
+        "value": 104,
+        "updatedAt": "2026-10-30T19:49:59Z",
         "url": "https://scholar.google.com/citations?user=GNO0HzAAAAAJ"
       },
       "semanticScholar": {
         "value": 92,
-        "updatedAt": "2026-10-30T10:31:50Z",
+        "updatedAt": "2026-10-30T20:14:47Z",
         "url": "https://www.semanticscholar.org/author/Xiaobo-Wang/2297250786"
       }
     }
   },
   "github": {
-    "value": 676,
-    "updatedAt": "2026-10-30T10:31:50Z",
+    "value": 677,
+    "updatedAt": "2026-10-30T20:14:47Z",
     "repositories": [
       {
         "id": 1288131984,
         "source": "simple-agent-lab/rsihub",
         "name": "simple-agent-lab/RSIHub",
-        "stars": 304,
+        "stars": 305,
         "url": "https://github.com/simple-agent-lab/RSIHub",
-        "updatedAt": "2026-10-30T10:31:50Z"
+        "updatedAt": "2026-10-30T20:14:47Z"
       },
       {
         "id": 1257933595,
@@ -35,7 +35,7 @@
         "name": "bigai-nlco/belief-context-graph",
         "stars": 212,
         "url": "https://github.com/bigai-nlco/belief-context-graph",
-        "updatedAt": "2026-10-30T10:31:50Z"
+        "updatedAt": "2026-10-30T20:14:47Z"
       },
       {
         "id": 827603888,
@@ -43,7 +43,7 @@
         "name": "bigai-ai/ICE",
         "stars": 56,
         "url": "https://github.com/bigai-ai/ICE",
-        "updatedAt": "2026-10-30T10:31:50Z"
+        "updatedAt": "2026-10-30T20:14:47Z"
       },
       {
         "id": 1097902487,
@@ -51,7 +51,7 @@
         "name": "bigai-nlco/Awesome-AI-Memory",
         "stars": 42,
         "url": "https://github.com/bigai-nlco/Awesome-AI-Memory",
-        "updatedAt": "2026-10-30T10:31:50Z"
+        "updatedAt": "2026-10-30T20:14:47Z"
       },
       {
         "id": 1234743709,
@@ -59,7 +59,7 @@
         "name": "simple-agent-lab/simple-long-horizon-agent",
         "stars": 34,
         "url": "https://github.com/simple-agent-lab/simple-long-horizon-agent",
-        "updatedAt": "2026-10-30T10:31:50Z"
+        "updatedAt": "2026-10-30T20:14:47Z"
       },
       {
         "id": 942509455,
@@ -67,7 +67,7 @@
         "name": "bigai-nlco/ReflectEvo",
         "stars": 22,
         "url": "https://github.com/bigai-nlco/ReflectEvo",
-        "updatedAt": "2026-10-30T10:31:50Z"
+        "updatedAt": "2026-10-30T20:14:47Z"
       },
       {
         "id": 1168979740,
@@ -75,7 +75,7 @@
         "name": "bigai-nlco/PoliCon",
         "stars": 4,
         "url": "https://github.com/bigai-nlco/PoliCon",
-        "updatedAt": "2026-10-30T10:31:50Z"
+        "updatedAt": "2026-10-30T20:14:47Z"
       },
       {
         "id": 762052931,
@@ -83,10 +83,10 @@
         "name": "bigai-nlco/RAM",
         "stars": 2,
         "url": "https://github.com/bigai-nlco/RAM",
-        "updatedAt": "2026-10-30T10:31:50Z"
+        "updatedAt": "2026-10-30T20:14:47Z"
       }
     ],
     "url": "https://github.com/Yofuria"
   },
-  "generatedAt": "2026-10-30T10:31:50Z"
+  "generatedAt": "2026-10-30T20:14:47Z"
 }
