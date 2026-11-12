@@ -2,20 +2,20 @@
 
 These small badges share the same data on [my website](https://yofuria.github.io/) and [GitHub profile](https://github.com/Yofuria).
 
-**Scholar citations: 110** · Last successfully collected: 2026-11-11T12:14:24Z.
+**Scholar citations: 110** · Last successfully collected: 2026-11-12T02:32:39Z.
 
 **Project stars: 738** across 8 listed open-source projects, including organization repositories. Each repository is counted once, using its stable GitHub ID. This is a project total, not stars owned by the personal account or a count of unique people.
 
 | Repository | Stars | Last successfully checked (UTC) |
 | --- | ---: | --- |
-| [simple-agent-lab/RSIHub](https://github.com/simple-agent-lab/RSIHub) | 358 | 2026-11-11T22:21:46Z |
-| [bigai-nlco/belief-context-graph](https://github.com/bigai-nlco/belief-context-graph) | 218 | 2026-11-11T22:21:46Z |
-| [bigai-ai/ICE](https://github.com/bigai-ai/ICE) | 56 | 2026-11-11T22:21:46Z |
-| [bigai-nlco/Awesome-AI-Memory](https://github.com/bigai-nlco/Awesome-AI-Memory) | 42 | 2026-11-11T22:21:46Z |
-| [simple-agent-lab/simple-long-horizon-agent](https://github.com/simple-agent-lab/simple-long-horizon-agent) | 36 | 2026-11-11T22:21:46Z |
-| [bigai-nlco/ReflectEvo](https://github.com/bigai-nlco/ReflectEvo) | 22 | 2026-11-11T22:21:46Z |
-| [bigai-nlco/PoliCon](https://github.com/bigai-nlco/PoliCon) | 4 | 2026-11-11T22:21:46Z |
-| [bigai-nlco/RAM](https://github.com/bigai-nlco/RAM) | 2 | 2026-11-11T22:21:46Z |
+| [simple-agent-lab/RSIHub](https://github.com/simple-agent-lab/RSIHub) | 358 | 2026-11-12T02:36:37Z |
+| [bigai-nlco/belief-context-graph](https://github.com/bigai-nlco/belief-context-graph) | 218 | 2026-11-12T02:36:37Z |
+| [bigai-ai/ICE](https://github.com/bigai-ai/ICE) | 56 | 2026-11-12T02:36:37Z |
+| [bigai-nlco/Awesome-AI-Memory](https://github.com/bigai-nlco/Awesome-AI-Memory) | 42 | 2026-11-12T02:36:37Z |
+| [simple-agent-lab/simple-long-horizon-agent](https://github.com/simple-agent-lab/simple-long-horizon-agent) | 36 | 2026-11-12T02:36:37Z |
+| [bigai-nlco/ReflectEvo](https://github.com/bigai-nlco/ReflectEvo) | 22 | 2026-11-12T02:36:37Z |
+| [bigai-nlco/PoliCon](https://github.com/bigai-nlco/PoliCon) | 4 | 2026-11-12T02:36:37Z |
+| [bigai-nlco/RAM](https://github.com/bigai-nlco/RAM) | 2 | 2026-11-12T02:36:37Z |
 
 The workflow attempts updates twice daily at 00:00 and 12:00 China time (16:00 and 04:00 UTC), and supports manual runs. It compares Google Scholar and Semantic Scholar on every update and displays the larger count. The citations badge links to the corresponding author profile; ties prefer Google Scholar. A failed source keeps its previous value and timestamp. If it has no snapshot, the available source is used; if neither has valid data, all published output is left untouched.
 
