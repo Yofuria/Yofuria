@@ -24,8 +24,9 @@ Reward Modeling · LLM Alignment · Continual Learning · Agent Memory
 
 ## About
 
-I work on building language models that keep improving from experience through
-reliable reward signals, robust alignment, continual adaptation, and memory.
+I work on self-improving agents that learn from experience, adapt to changing
+environments, and expand their capabilities over time. My research focuses on
+continual learning and reward modeling.
 
 I am currently a PhD student at the University of Science and Technology of
 China and a research intern at the Beijing Institute for General Artificial
