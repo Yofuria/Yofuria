@@ -20,7 +20,8 @@ def google(value):
 
 
 def semantic(value):
-    return {"authorId": CONFIG["semanticScholarId"], "citationCount": value}
+    return {"authorId": CONFIG["semanticScholarId"], "citationCount": value, "paperCount": 1,
+            "papers": [{"paperId": "example-paper", "citationCount": value}]}
 
 
 class CitationComparisonTests(unittest.TestCase):
@@ -72,6 +73,52 @@ class CitationComparisonTests(unittest.TestCase):
         bad_semantic = dict(semantic(1000), authorId="someone-else")
         result = self.collect([google(-1), bad_semantic], {"citations": previous})
         self.assertEqual(result["value"], 130)
+
+    def test_semantic_paper_sum_matches_website_when_author_aggregate_differs(self):
+        author = semantic(103)
+        counts = [1, 1, 16, 2, 24, 4, 0, 7, 8, 44]
+        author["paperCount"] = len(counts)
+        author["papers"] = [{"paperId": str(i), "citationCount": value} for i, value in enumerate(counts)]
+        result = self.collect([google(105), author])
+        self.assertEqual(result["sources"]["semanticScholar"]["value"], 107)
+        self.assertEqual(result["value"], 107)
+        self.assertEqual(result["url"], CONFIG["semanticScholarUrl"])
+
+    def test_duplicate_paper_does_not_double_count_citations(self):
+        author = semantic(107)
+        author["papers"] *= 2
+        result = self.collect([google(101), author])
+        self.assertEqual(result["value"], 107)
+
+    def test_truncated_embedded_papers_fetch_all_pages(self):
+        author = semantic(107)
+        author["paperCount"] = 3
+        pages = [
+            {"offset": 0, "next": 2, "data": [
+                {"paperId": "a", "citationCount": 44}, {"paperId": "b", "citationCount": 24}]},
+            {"offset": 2, "data": [{"paperId": "c", "citationCount": 39}]},
+        ]
+        with patch.object(metrics, "fetch_json", side_effect=[google(101), author, *pages]) as fetch:
+            result = metrics.collect_citations(CONFIG, {}, NOW)
+        self.assertEqual(result["value"], 107)
+        self.assertIn("/papers?fields=citationCount&limit=1000&offset=2", fetch.call_args.args[0])
+
+    def test_incomplete_papers_cannot_replace_previous_snapshot(self):
+        previous = self.collect([google(101), semantic(107)])
+        author = semantic(50)
+        author["paperCount"] = 2
+        page = {"offset": 0, "data": author["papers"]}
+        result = self.collect([google(102), author, page], {"citations": previous})
+        self.assertEqual(result["sources"]["semanticScholar"], previous["sources"]["semanticScholar"])
+
+    def test_invalid_paper_counts_keep_previous_snapshot(self):
+        previous = self.collect([google(101), semantic(107)])
+        for value in (None, True, -1, "107"):
+            author = semantic(103)
+            author["papers"][0]["citationCount"] = value
+            with self.subTest(value=value):
+                result = self.collect([google(102), author], {"citations": previous})
+                self.assertEqual(result["sources"]["semanticScholar"], previous["sources"]["semanticScholar"])
 
     def test_readme_link_switches_without_source_annotation(self):
         original = (Path(__file__).resolve().parents[2] / "README.md").read_text()

@@ -1,6 +1,6 @@
 """Generate shared homepage metrics and small SVG badges, using only the stdlib.
 
-Compare Google Scholar's existing cache with the Semantic Scholar author API.
+Compare Google Scholar's cache with Semantic Scholar's per-paper citation sum.
 Display the larger citation count and link the badge to its author profile.
 Stars count the listed projects, including organization repositories, once each.
 On a failed request, retain that source's last successful value and timestamp.
@@ -43,6 +43,55 @@ def utc_date(value):
     return date.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
+def semantic_citations(author_id):
+    base = f"https://api.semanticscholar.org/graph/v1/author/{author_id}"
+    author = fetch_json(base + "?fields=authorId,name,paperCount,citationCount,papers.citationCount")
+    if not isinstance(author, dict) or author.get("authorId") != author_id:
+        raise ValueError("Semantic Scholar author does not match the configured ID")
+    expected = count(author["paperCount"])
+    papers = {}
+
+    def add_papers(rows):
+        if not isinstance(rows, list):
+            raise ValueError("Invalid Semantic Scholar paper list")
+        for paper in rows:
+            if not isinstance(paper, dict):
+                raise ValueError("Invalid Semantic Scholar paper")
+            paper_id = paper["paperId"]
+            if not isinstance(paper_id, str) or not paper_id:
+                raise ValueError("Missing Semantic Scholar paper ID")
+            citations = count(paper["citationCount"])
+            if paper_id in papers and papers[paper_id] != citations:
+                raise ValueError("Conflicting citation counts for a duplicate paper")
+            papers[paper_id] = citations
+
+    add_papers(author["papers"])
+    if len(papers) < expected:
+        # Embedded author papers can be truncated. Retrieve the full paginated list.
+        papers.clear()
+        offset = 0
+        while True:
+            page = fetch_json(base + f"/papers?fields=citationCount&limit=1000&offset={offset}")
+            if not isinstance(page, dict) or page.get("offset") != offset:
+                raise ValueError("Unexpected Semantic Scholar pagination offset")
+            add_papers(page["data"])
+            if page.get("next") is None:
+                break
+            next_offset = count(page["next"])
+            if next_offset <= offset or next_offset > expected:
+                raise ValueError("Invalid Semantic Scholar pagination cursor")
+            offset = next_offset
+
+    if len(papers) != expected:
+        raise ValueError("Incomplete Semantic Scholar paper list; keeping the previous snapshot")
+    total = count(sum(papers.values()))
+    # The author aggregate can differ from the website. On 2026-11-15 it was
+    # 103, while these 10 paper counts summed to the website's displayed 107.
+    print(f"Semantic Scholar: {total} citations across {len(papers)} papers "
+          f"(author aggregate: {count(author['citationCount'])}).")
+    return total
+
+
 def collect_citations(config, previous, now):
     old_citations = previous.get("citations", {})
     cached = dict(old_citations.get("sources", {}))
@@ -65,12 +114,8 @@ def collect_citations(config, previous, now):
         print("Google Scholar unavailable; retaining its last valid snapshot if available.", file=sys.stderr)
 
     try:
-        author_id = config["semanticScholarId"]
-        author = fetch_json(f"https://api.semanticscholar.org/graph/v1/author/{author_id}?fields=authorId,name,citationCount")
-        if author.get("authorId") != author_id:
-            raise ValueError("Semantic Scholar author does not match the configured ID")
         sources["semanticScholar"] = {
-            "value": count(author["citationCount"]),
+            "value": semantic_citations(config["semanticScholarId"]),
             "updatedAt": now,
             "url": config["semanticScholarUrl"],
         }
@@ -195,7 +240,7 @@ The workflow attempts updates twice daily at 00:00 and 12:00 China time (16:00 a
 
 To change the scope, edit [`config.json`](config.json). The list covers repositories linked from the website's publications/projects and GitHub profile. `LLM-Memory-Survey` is now `Awesome-AI-Memory`; the stable repository ID prevents duplicate counts after renames.
 
-The website fetches [`stats.json`](stats.json); GitHub displays the generated light/dark SVGs. The workflow also updates the citations link in the profile README when the selected author profile changes. No extra service or API key is needed. The existing Google Scholar crawler is maintained in the website repository; Semantic Scholar uses its official author API.
+The website fetches [`stats.json`](stats.json); GitHub displays the generated light/dark SVGs. The workflow also updates the citations link in the profile README when the selected author profile changes. The Google Scholar crawler in the website repository uses SerpApi. Semantic Scholar uses its official API to sum citation counts across the complete author paper list, deduplicated by paper ID, matching the website's displayed total. The API's author-level `citationCount` can differ from that sum. Missing papers or invalid counts retain the previous successful snapshot. No additional API key is needed in this profile repository.
 ''')
     profile_readme.write_text(updated_readme)
 
